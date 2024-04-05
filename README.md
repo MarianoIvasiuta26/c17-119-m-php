@@ -25,8 +25,8 @@ Este proyecto es una plataforma en línea para facilitar el proceso de adopción
   - Maria Esquivel Fernandez   Frontend    Ln: https://www.linkedin.com/in/maria-esquivel-fernandez-a07114285
   - Mariano Ivasiuta           Backend     Ln: https://www.linkedin.com/in/marianoivasiuta/
   - Lourdes Ibañez             Backend     Ln: https://www.linkedin.com/in/lourdes-iba%C3%B1ez-baa056284?
-  - Miguel Cañate Barreneche   Frontend    Ln: https://www.linkedin.com/in/miguelcbarreneche/
-  - Jesus Manuel Cespedes      Backend     Ln: https://ar.linkedin.com/in/cespedes-jesus-manuel-5b1307250
+  - Miguel Cañate 	       Frontend    Ln: https://www.linkedin.com/in/miguelcbarreneche/
+  - Jesus Manuel 	       Backend     Ln: https://ar.linkedin.com/in/cespedes-jesus-manuel-5b1307250
   - Jose Luis Capote           Frontend    Ln: https://www.linkedin.com/in/jose-luis-capote-dsw/
 
 [<img src="https://avatars.githubusercontent.com/u/70924972?v=4" width=100><br><sub>Jose Luis Capote</sub>](https://github.com/jlcapor) | [<img src="https://avatars.githubusercontent.com/u/94227693?v=4" width=100><br><sub>Miguel Cañate Barreneche</sub>](https://github.com/MiguelCagnate) | [<img src="https://avatars.githubusercontent.com/u/81333168?v=4" width=100><br><sub>Mariano Ivasiuta</sub>](https://github.com/MarianoIvasiuta26) | [<img src="https://avatars.githubusercontent.com/u/79941492?v=4" width=100><br><sub>Lourdes Ibañez</sub>](https://github.com/lourdesibanez) | [<img src="https://avatars.githubusercontent.com/u/34587375?v=4" width=100><br><sub>Jesus Manuel Cespedes</sub>](https://github.com/manuelc79) | [<img src="https://avatars.githubusercontent.com/u/131416497?v=4" width=100><br><sub>Maria Esquivel</sub>](https://github.com/MariaEsquivelf) |
