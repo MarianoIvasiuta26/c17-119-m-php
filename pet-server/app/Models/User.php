@@ -34,6 +34,26 @@ class User extends Authenticatable
         return $this->hasOne(Person::class);
     }
 
+    //Establecemos relación 1 a 1 con refugio
+    public function refuge(){
+        return $this->hasOne(Refuge::class);
+    }
+
+    //Establecemos relación 1 a n con mascotas
+    public function pets(){
+        return $this->hasMany(Pets::class);
+    }
+
+    //Establecemos relación 1 a n con adopciones
+    public function adoptions(){
+        return $this->hasMany(Adoption::class);
+    }
+
+    //Establecemos relación 1 a n con publicaciones
+    public function publicationDetails(){
+        return $this->hasMany(PublicationDetail::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

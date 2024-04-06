@@ -6,16 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Person extends Model
+class Refuge extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected  $fillable = [
-        'last_name',
-        'name',
-        'user_id',
+    protected $fillable = [
+        'name_refuge',
+        'phone',
         'domicile_id',
+        'user_id',
     ];
+
+    //Establecemos relación uno a uno con domicilio
+    public function domicile()
+    {
+        return $this->belongsTo(Domicile::class);
+    }
 
     //Establecemos relación uno a uno con usuario
     public function user()
@@ -23,9 +29,4 @@ class Person extends Model
         return $this->belongsTo(User::class);
     }
 
-    //Establecemos relación uno a uno con domicilio
-    public function domicile()
-    {
-        return $this->belongsTo(Domicile::class);
-    }
 }

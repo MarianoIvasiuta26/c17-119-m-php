@@ -31,11 +31,24 @@ class Pets extends Model
 
     public function petStateId()
     {
-        return $this->belongsTo(PetSatate::class, 'pet_state_id');
+        return $this->belongsTo(PetState::class, 'pet_state_id');
     }
 
     public function animal()
     {
         return $this->belongsTo(Animal::class, 'animal_id');
     }
+
+    //Establecemos relación uno a muchos con adopciones
+    public function adoptions()
+    {
+        return $this->hasMany(Adoption::class);
+    }
+
+    //Establecemos relación uno a n con publicaciones
+    public function publicationDetails()
+    {
+        return $this->hasMany(PublicationDetail::class);
+    }
+    
 }
