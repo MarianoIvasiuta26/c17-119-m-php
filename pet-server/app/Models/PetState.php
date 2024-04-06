@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PetSate extends Model
+class PetState extends Model
 {
     use HasFactory;
 
@@ -14,4 +14,10 @@ class PetSate extends Model
     protected $fillable = [
         'state'
     ];
+
+    //Establecemos relación uno a muchos con mascotas
+    public function pets()
+    {
+        return $this->hasMany(Pets::class);
+    }
 }
