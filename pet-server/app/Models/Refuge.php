@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Refuge extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes; //Permite un borrado lógico sin perder los registros de la BD.
 
     protected $fillable = [
         'name_refuge',
