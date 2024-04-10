@@ -1,15 +1,21 @@
-import { BrowserRouter, Routes,Route } from 'react-router-dom';
-import Navbar from './components/Home/Navbar';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./pages/Home/Navbar";
+import Header from "./pages/Home/Header"
+export default function Router() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
-
-
-
-export default function Router(){
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navbar />} />         
-        </Routes>
-      </BrowserRouter>
-    );
+function Home() {
+  return (
+    <div>
+      <Header/>
+      <Navbar />      
+    </div>
+  );
 }
