@@ -17,7 +17,7 @@ class AnimalFactory extends Factory
     public function definition(): array
     {
         return [
-            'animal' => $this->faker->unique()->randomElement(['Perro', 'Gato', 'Conejo', 'Pez', 'Loro', 'Reptil', 'Roedor', 'Tortuga'])
+            'type_animal' => $this->faker->unique()->randomElement(['Perro', 'Gato', 'Conejo', 'Pez', 'Loro', 'Reptil', 'Roedor', 'Tortuga'])
         ];
     }
 }
