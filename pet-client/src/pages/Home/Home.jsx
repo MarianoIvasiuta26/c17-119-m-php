@@ -1,7 +1,6 @@
 import Footer from "./Footer"
 import Header from "./Header"
 import Navbar from "./Navbar"
-import Section from "./Section";
 
 
 
@@ -10,8 +9,8 @@ import Section from "./Section";
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    opacity: 0.5, // Adjust the opacity value as needed
-    position: "fixed", // or 'absolute' depending on your layout
+   
+    position: "absolute", 
     top: 0,
     left: 0,
     width: "100%",
@@ -23,13 +22,15 @@ import Section from "./Section";
 
 const Home = () => {
   return (
-    <>
-      <div style={backgroundStyle}></div>
+    
+      <div style={backgroundStyle}>
+
       <Navbar />
       <Header />
-      <Section />
+      
       <Footer />
-    </>
+      </div>
+    
   );
 }
 

@@ -3,38 +3,36 @@
 const Footer = () => {
   return (
     <>
-      <footer className="px-4 divide-y bg-green-900 text-gray-100">
+      <footer className="px-4 divide-y bg-green-900 text-gray-100 pb-0">
         <div className="container flex flex-col justify-between py-5 mx-auto space-y-6 lg:flex-row lg:space-y-0">
           <div className="lg:w-1/3">
             <a
-              rel="noopener noreferrer"
-              href="#"
-              className="flex justify-center space-x-2 lg:justify-start ml-40"
+              href="/"
+              className="flex items-center space-x-3 rtl:space-x-reverse"
             >
-              <div className="flex items-center justify-center w-auto h-12 rounded-full bg-transparent">
-                <img
-                  src="/suramigo-logo.png" // Adjusted image source path
-                  className="h-16 w-auto"
-                  alt="SurAmigo Logo"
-                />
-              </div>
-              <span className="self-center text-2xl font-semibold">
-                SurAmigo
+              <img
+                src="/suramigo-logo.png" // Adjusted image source path
+                className="h-14 w-auto"
+                alt="SurAmigo Logo"
+              />
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                SURAMIGO
               </span>
             </a>
           </div>
           <div className="grid grid-cols-2 text-sm gap-x-3 lg:w-2/3 sm:grid-cols-4">
             <div className="space-y-3">
-              <h3 className="tracking-wide uppercase text-gray-50">SOMOS SURAMIGO</h3>
-          
+              <h3 className="tracking-wide uppercase text-gray-50">
+                SOMOS SURAMIGO
+              </h3>
             </div>
             <div className="space-y-3">
-              <h3 className="tracking-wide uppercase text-gray-50">¿Qué Hacemos?</h3>
-         
+              <h3 className="tracking-wide uppercase text-gray-50">
+                ¿Qué Hacemos?
+              </h3>
             </div>
             <div className="space-y-3">
               <h3 className="uppercase text-gray-50">Contacto</h3>
-       
             </div>
             <div className="space-y-1">
               <div className="uppercase text-gray-50">Social media</div>
