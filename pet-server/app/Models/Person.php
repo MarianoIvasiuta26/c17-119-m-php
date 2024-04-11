@@ -15,6 +15,7 @@ class Person extends Model
         'name',
         'user_id',
         'domicile_id',
+        'phone',
     ];
 
     //Establecemos relación uno a uno con usuario

@@ -10,7 +10,7 @@
 Este proyecto es una plataforma en línea para facilitar el proceso de adopción de mascotas, conectando a usuarios interesados en adoptar con refugios y personas que rescatan animales. La aplicación permite a los usuarios buscar mascotas, solicitar adopciones, publicar información sobre mascotas perdidas y seguir el proceso de adopción. Los refugios pueden registrar mascotas en adopción y gestionar solicitudes de adopción, mientras que los administradores garantizan la calidad y seguridad de la plataforma.
 
 ## Wireframes en figma
-[Figma Suramigo](https://www.figma.com/file/kUdFA8kSD437VmawvX9Uyn/SURAMIGO-App?type=design&node-id=0%3A1&mode=design&t=kPIOUSOaasPIfGW8-1)
+[Figma](https://www.figma.com/file/kUdFA8kSD437VmawvX9Uyn/SURAMIGO-App?type=design&node-id=0%3A1&mode=design&t=kPIOUSOaasPIfGW8-1)
 
 ## Proceso de Adopción (MVP)
 1. El usuario navega la aplicación sin iniciar sesión.
@@ -50,6 +50,26 @@ Este proyecto es una plataforma en línea para facilitar el proceso de adopción
 <img width="25" src="https://raw.githubusercontent.com/github/explore/f4ec5347a36e06540a69376753a7c37a8cb5a136/topics/supabase/supabase.png" alt="Supabase" title="Supabase"/>[Supabase](https://supabase.com/)
 <img width="25" src="https://user-images.githubusercontent.com/25181517/117208740-bfb78400-adf5-11eb-97bb-09072b6bedfc.png" alt="PostgreSQL" title="PostgreSQL"/>[PostgreSQL](https://www.postgresql.org/)
 <img width="25" src="https://user-images.githubusercontent.com/25181517/189715289-df3ee512-6eca-463f-a0f4-c10d94a06b2f.png" alt="Figma" title="Figma"/>[Figma](https://www.figma.com/)
+
+<!--
+## Instrucciones de Instalación y Uso
+1. Clona este repositorio.
+2. Instala las dependencias necesarias.
+3. Configura la base de datos y entorno de desarrollo.
+4. Ejecuta la aplicación y sigue las instrucciones proporcionadas en la documentación.
+
+## Contribución
+¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, sigue las pautas de contribución y envía tus solicitudes de extracción.
+
+## Licencia
+Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+
+## Contacto
+Para preguntas o sugerencias, contáctanos en [correo electrónico] o [redes sociales].
+-->
+
+</response>
+
 
 <!--
 ## Instrucciones de Instalación y Uso

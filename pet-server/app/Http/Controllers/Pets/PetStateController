@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Adoption;
+namespace App\Http\Controllers\Pet;
 
 use App\Http\Controllers\Controller;
-use App\Models\Adoption;
 use Illuminate\Http\Request;
 
-class AdoptionController extends Controller
+class PetStateController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //Obtenemos los registros de la BD
-        $adoptions = Adoption::all();
-        
+        //
     }
 
     /**
