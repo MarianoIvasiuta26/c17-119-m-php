@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./pages/Home/Navbar";
 import Header from "./pages/Home/Header"
+import Footer from "./pages/Home/Footer";
+
 export default function Router() {
   return (
     <BrowserRouter>
@@ -14,8 +16,9 @@ export default function Router() {
 function Home() {
   return (
     <div>
-      <Header/>
-      <Navbar />      
+      <Header />
+      <Navbar />
+      <Footer />
     </div>
   );
 }
