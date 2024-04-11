@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import useSWR from 'swr'
 import {useNavigate} from 'react-router-dom'
 import clienteAxios from "../config/axios";
@@ -8,8 +8,8 @@ export const useAuth = ({middleware, url}) => {
     const token = localStorage.getItem('AUTH_TOKEN')
     const navigate = useNavigate();
 
-    const { data: user, error, mutate } = useSWR('/api/user', () =>
-        clienteAxios('/api/user', {
+    const { data: user, error, mutate } = useSWR('', () =>
+        clienteAxios('', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -22,7 +22,7 @@ export const useAuth = ({middleware, url}) => {
 
      const login = async (datos, setErrores) => {
         try {
-            const {data} = await clienteAxios.post('/api/login', datos)
+            const {data} = await clienteAxios.post('', datos)
             localStorage.setItem('AUTH_TOKEN', data.token);
             setErrores([])
             await mutate()
@@ -33,7 +33,7 @@ export const useAuth = ({middleware, url}) => {
 
      const registro = async (datos, setErrores) => {
         try {
-            const {data} = await clienteAxios.post('/api/registro', datos)
+            const {data} = await clienteAxios.post('', datos)
             localStorage.setItem('AUTH_TOKEN', data.token);
             setErrores([])
             await mutate()
@@ -44,7 +44,7 @@ export const useAuth = ({middleware, url}) => {
 
      const logout = async () => {
         try {
-            await clienteAxios.post('/api/logout', null, {
+            await clienteAxios.post('', null, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -56,23 +56,23 @@ export const useAuth = ({middleware, url}) => {
         }
      }
 
-     useEffect(() => {
-        if(middleware === 'guest' && url && user) {
-            navigate(url)
-        }
+    //  useEffect(() => {
+    //     if(middleware === '' && url && user) {
+    //         navigate(url)
+    //     }
 
-        if(middleware === 'guest' && user && user.admin) {
-            navigate('/admin');
-        }
+    //     if(middleware === '' && user && user.admin) {
+    //         navigate('/admin');
+    //     }
 
-        if(middleware === 'admin' && user && !user.admin) {
-            navigate('/')
-        }
+    //     if(middleware === '' && user && !user.admin) {
+    //         navigate('/')
+    //     }
 
-        if(middleware === 'auth' && error) {
-            navigate('/auth/login')
-        }
-     }, [user, error]) 
+    //     if(middleware === '' && error) {
+    //         navigate('/auth/login')
+    //     }
+    //  }, [user, error]) 
 
      return {
         login,

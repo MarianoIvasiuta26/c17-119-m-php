@@ -2,7 +2,7 @@
 export default function HomeView() {
   return (
     <div>
-        <h1 className="">Mis Proyectos</h1>
+        <h1 className="">Mi home</h1>
     </div>
   )
 }
