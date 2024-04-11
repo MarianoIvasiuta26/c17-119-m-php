@@ -6,6 +6,7 @@ export default {
       "bebas-neue": ["Bebas Neue", "sans-serif"],
     },
     extend: {},
+    
   },
   plugins: [],
 };
