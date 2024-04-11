@@ -4,6 +4,7 @@ import Navbar from "./Navbar"
 
 
 
+
   const backgroundStyle = {
     backgroundColor: "#22543d",
     backgroundSize: "cover",
@@ -26,8 +27,7 @@ const Home = () => {
       <div style={backgroundStyle}>
 
       <Navbar />
-      <Header />
-      
+      <Header />      
       <Footer />
       </div>
     

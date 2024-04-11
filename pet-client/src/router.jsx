@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home1 from "./pages/Home/Home"
+import Nosotros from "./pages/Home/Nosotros";
+
 
 
 export default function Router() {
@@ -7,6 +9,7 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />} />
+        <Route path="/Nosotros" element={<Nosotros />} />
       </Routes>
     </BrowserRouter>
   );
