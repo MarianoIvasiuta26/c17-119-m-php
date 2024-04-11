@@ -9,7 +9,7 @@ const Navbar = () => {
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="/suramigo-logo.png" // Adjusted image source path
+              src="/suramigo-logo.png" 
               className="h-14 w-auto"
               alt="SurAmigo Logo"
             />
@@ -21,7 +21,7 @@ const Navbar = () => {
             <button
               type="button"
               className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-300 rounded-lg md:hidden hover:bg-gray-10 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-label="Open main menu" // Added aria-label for accessibility
+              aria-label="Open main menu" 
             >
               <svg
                 className="w-5 h-5"
@@ -72,7 +72,7 @@ const Navbar = () => {
             </ul>
           </div>
           <div
-            className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse" // Adjusted flex properties
+            className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse" 
           >
             <button
               type="button"
