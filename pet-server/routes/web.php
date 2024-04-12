@@ -16,6 +16,7 @@ use Inertia\Inertia;
 |
 */
 
+//Acá llamamos a la vista Home de Milo
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -25,6 +26,7 @@ Route::get('/', function () {
     ]);
 });
 
+//Acá llamamos a la vista principal del sistema ya con las funciones de la misma. Una vez que se loguea el usuario.
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
