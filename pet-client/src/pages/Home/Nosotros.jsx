@@ -19,11 +19,11 @@ const Nosotros = () => {
 return (
   <div className="p-2 md:p-4 lg:p-10 mx-auto flex items-center justify-center">
     <div style={backgroundStyle}></div>
-    <div className="w-full max-w-xl text-center font-normal gap-6 text-black">
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8">
-        ¿Qué hacemos en SurAmigo?
-      </h1>
-      <div className="text-base md:text-lg lg:text-lg mb-12 text-left">
+    <div className="max-w-3xl text-center font-normal gap-6 text-black mt-8 pt-4">
+      <h2 className="text-2xl md:text-4xl lg:text-3xl font-bold mb-2">
+        Somos SurAmigo
+      </h2>
+      <div className="text-base md:text-lg lg:text-lg mb-4 text-left">
         <p>
           En SurAmigo, nuestra pasión por la adopción de mascotas va más allá de
           solo ofrecer una plataforma; representa una comunidad diversa y
@@ -58,7 +58,7 @@ return (
       </div>
       <a
         href="/"
-        className="text-black bg-lime-600 px-6 py-3 rounded-md font-semibold hover:bg-gray-300 transition duration-300"
+        className="text-black bg-lime-600 px-6 py-1 rounded-md font-semibold hover:bg-gray-300 transition duration-300"
       >
         Explorar más
       </a>

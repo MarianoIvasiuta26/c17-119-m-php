@@ -1,26 +1,24 @@
-
-
 const Footer = () => {
   return (
     <>
-      <footer className="px-4 divide-y bg-green-900 text-gray-100 pb-0">
-        <div className="container flex flex-col justify-between py-5 mx-auto space-y-6 lg:flex-row lg:space-y-0">
-          <div className="lg:w-1/3">
+      <footer className="px-2 divide-y bg-green-900 text-gray-100">
+        <div className="container flex flex-col justify-between py-3 mx-auto space-y-3">
+          <div className="lg:w-1/3 mx-auto">
             <a
               href="/"
-              className="flex items-center space-x-3 rtl:space-x-reverse"
+              className="flex items-center space-x-3 rtl:space-x-reverse justify-center"
             >
               <img
-                src="/suramigo-logo.png" // Adjusted image source path
-                className="h-14 w-auto"
+                src="/suramigo-logo.png"
+                className="h-12 w-auto"
                 alt="SurAmigo Logo"
               />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-2xl font-semibold whitespace-nowra text-white">
                 SURAMIGO
               </span>
             </a>
           </div>
-          <div className="grid grid-cols-2 text-sm gap-x-3 lg:w-2/3 sm:grid-cols-4">
+          <div className="grid grid-cols-2 text-sm gap-x-3 lg:w-2/3 mx-auto sm:grid-cols-4">
             <div className="space-y-3">
               <h3 className="tracking-wide uppercase text-gray-50">
                 SOMOS SURAMIGO
@@ -91,6 +89,6 @@ const Footer = () => {
       </footer>
     </>
   );
-}
+};
 
-export default Footer
+export default Footer;

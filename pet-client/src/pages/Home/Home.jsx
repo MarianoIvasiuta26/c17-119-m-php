@@ -3,8 +3,6 @@ import Header from "./Header"
 import Navbar from "./Navbar"
 
 
-
-
   const backgroundStyle = {
     backgroundColor: "#22543d",
     backgroundSize: "cover",
@@ -17,7 +15,6 @@ import Navbar from "./Navbar"
     width: "100%",
     height: "100%",
     zIndex: -1, 
-    loading: "lazy",
   };
 
 
