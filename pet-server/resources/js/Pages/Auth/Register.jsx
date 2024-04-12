@@ -6,9 +6,14 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register() {
+// Dentro de la función del componente, debemos poner entre {} la variable que traemos desde el backend
+export default function Register({roles}) {
+    
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        role_name: '',
+        phone: '',
+        name_refuge: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -63,6 +68,114 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="phone" value="Phone" />
+
+                    <TextInput
+                        id="phone"
+                        name="phone"
+                        value={data.phone}
+                        className="mt-1 block w-full"
+                        autoComplete="phone"
+                        onChange={(e) => setData('phone', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.phone} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="role_name" value="Role" />
+
+                    <select
+                        id="role_name"
+                        name="role_name"
+                        value={data.role_name}
+                        className="mt-1 block w-full"
+                        autoComplete="role_name"
+                        onChange={(e) => setData('role_name', e.target.value)}
+                        required
+                    >
+                        {
+                            roles.map((role, index) => (
+                                <option key={index} value={role.role_name}>{role.role_name}</option>
+                            ))
+                        }
+                    </select>
+
+                    <InputError message={errors.role_name} className="mt-2" />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="country" value="Country"/>
+
+                    <TextInput
+                        id="country"
+                        name="country"
+                        value={data.country}
+                        className="mt-1 block w-full"
+                        autoComplete="country"
+                        onChange={(e) => setData('country', e.target.value)}
+                        required
+                    />
+                </div>
+                
+                <div className='mt-4'>
+                    <InputLabel htmlFor="province" value="Province"/>
+
+                    <TextInput
+                        id="province"
+                        name="province"
+                        value={data.province}
+                        className="mt-1 block w-full"
+                        autoComplete="province"
+                        onChange={(e) => setData('province', e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="city" value="City"/>
+
+                    <TextInput
+                        id="city"
+                        name="city"
+                        value={data.city}
+                        className="mt-1 block w-full"
+                        autoComplete="city"
+                        onChange={(e) => setData('city', e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="postal_code" value="Postal Code"/>
+
+                    <TextInput
+                        id="postal_code"
+                        name="postal_code"
+                        value={data.postal_code}
+                        className="mt-1 block w-full"
+                        autoComplete="postal_code"
+                        onChange={(e) => setData('postal_code', e.target.value)}
+                        required
+                    />
+                </div>
+
+                <div className='mt-4'>
+                    <InputLabel htmlFor="address" value="Address"/>
+
+                    <TextInput
+                        id="address"
+                        name="address"
+                        value={data.address}
+                        className="mt-1 block w-full"
+                        autoComplete="address"
+                        onChange={(e) => setData('address', e.target.value)}
+                        required
+                    />
                 </div>
 
                 <div className="mt-4">
