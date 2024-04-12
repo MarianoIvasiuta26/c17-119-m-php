@@ -1,15 +1,9 @@
 <?php
 
-use App\Http\Controllers\Adoption\AdoptionController;
-use App\Http\Controllers\Adoption\AdoptionPublicationController;
-use App\Http\Controllers\Adoption\PublicationDetailController;
-use App\Http\Controllers\User\DomicileController;
-use App\Http\Controllers\User\PersonController;
-use App\Http\Controllers\User\RefugeController;
-use App\Http\Controllers\User\RoleController;
-use App\Http\Controllers\User\UserController;
-use App\Models\Person;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,22 +11,28 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('adoption', AdoptionController::class)->names('adoption'); //Agrupa todas las rutas del controlador. Reemplaza la creación de rutas Get y Post individuales.
-Route::resource('adoption-publication', AdoptionPublicationController::class)->names('adoption-publication');
-Route::resource('publication-detail', PublicationDetailController::class)->names('publication-detail');
-// rutras creadas por jesus
-Route::resource('user', UserController::class)->names('user');
-Route::resource('role', RoleController::class)->names('role');
-Route::resource('refuge', RefugeController::class)->names('refuge');
-Route::resource('person', PersonController::class)->names('person');
-Route::resource('domicile', DomicileController::class)->names('domicile');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
