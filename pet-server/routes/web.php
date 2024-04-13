@@ -37,4 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//me crea las rutas de todos los metodos que tenga el controlador sea post/get/delete/update
+Route::resource('/animals', AnimalController::class);
+Route::resource('/pets', PetController::class);
+Route::resource('/pet_states', PetStateController::class);
+
+
+
 require __DIR__.'/auth.php';

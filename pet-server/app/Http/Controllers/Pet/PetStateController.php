@@ -5,14 +5,19 @@ namespace App\Http\Controllers\Pet;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PetController extends Controller
+class PetStateController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index(){
+        //Obtenemos los estados de las mascotas registrados en el sistema
+        $pet_states = PetState::all();
+
+        //Devolvemos la vista con todos los estados obtenidos
+        return Inertia::render('Pet/PetState', [
+            'pet_states' => $pet_states,
+        ]);
     }
 
     /**
