@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pets extends Model
-{
+class Pet extends Model{
     use HasFactory;
 
     protected $table = 'pets';
@@ -24,7 +23,7 @@ class Pets extends Model
         'image'
     ];
 
-    public function userId() 
+    public function userId()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -50,5 +49,5 @@ class Pets extends Model
     {
         return $this->hasMany(PublicationDetail::class);
     }
-    
+
 }
