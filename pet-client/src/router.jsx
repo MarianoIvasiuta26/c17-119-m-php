@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home1 from "./pages/Home/Home"
 import Quehacemos from "./pages/Home/Quehacemos";
-import Nosotros from "./pages/Home/Nosotros";
-Nosotros
+import SomosSuramigo from "./pages/Home/SomosSuramigo";
+
 
 
 
@@ -12,7 +12,7 @@ export default function Router() {
       <Routes>
         <Route path="/" element={<Layout />} />
         <Route path="/Quehacemos" element={<Quehacemos />} />
-        <Route path="/Nosotros" element={<Nosotros />} />
+        <Route path="/Nosotros" element={<SomosSuramigo />} />
       </Routes>
     </BrowserRouter>
   );

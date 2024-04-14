@@ -1,23 +1,22 @@
 
-
-const Nosotros = () => {
-  
-return (
-  <div className="relative">
-    <img
-      className="w-full h-auto"
-      loading="lazy"
-      src="/gatonegro.jpg"
-      alt="gatonegro"
-    />
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div>
-        <h2 className="text-lg md:text-2xl lg:text-xl xl:text-2xl text-center font-bold mb-2">
-          Somos SurAmigo
-        </h2>
-
-        <div className="max-w-4xl text-left font-normal gap-6 text-black">
-          <p>
+const SomosSuramigo = () => {
+  return (
+    
+      <div
+        className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('gatonegro.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+   
+        <div className="max-w-full px-4 text-center text-gray-800">
+          <h1 className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl">
+            Somos SurAmigo
+          </h1>
+          <p className="mt-4 text-base text-left md:text-lg lg:text-xl xl:text-2xl">
             Somos un equipo de desarrolladores de frontend y backend
             provenientes de diversas partes del mundo, unidos por un propósito
             común: facilitar el proceso de adopción de mascotas y fomentar el
@@ -25,13 +24,7 @@ return (
             por talentosos individuos de diferentes nacionalidades y culturas,
             enfrenta desafíos diarios que van más allá del código.
           </p>
-
-          <p>
-            En SurAmigo, nuestra pasión por la adopción de mascotas va más allá
-            de solo ofrecer una plataforma; representa una comunidad diversa y
-            comprometida.
-          </p>
-          <p>
+          <p className="mt-4 text-base text-left md:text-lg lg:text-xl xl:text-2xl">
             Nos desafiamos mutuamente a pensar de manera creativa y a encontrar
             soluciones innovadoras para mejorar continuamente nuestra plataforma
             y brindar una experiencia excepcional a nuestros usuarios. En
@@ -41,20 +34,16 @@ return (
             un paso hacia adelante en nuestro compromiso de hacer del mundo un
             lugar mejor para todas las criaturas vivientes.
           </p>
+          <a
+            href="/"
+            className="mt-4 mb-4 inline-block bg-lime-500 px-8 py-2 rounded-md font-semibold text-black hover:bg-gray-300 transition duration-300"
+          >
+            Explorar más
+          </a>
         </div>
-        <a
-          href="/"
-          className="text-black absolute items-center text-center ml-60 mr-auto bg-lime-500 px-8 py-1 mt-6 rounded-md font-semibold hover:bg-gray-300 transition duration-300"
-        >
-          Explorar más
-        </a>
       </div>
-    </div>
-  </div>
-);
-
-
-
+    
+  );
 };
 
-export default Nosotros;
+export default SomosSuramigo;
