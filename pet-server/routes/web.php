@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Adoption\AdoptionController;
+use App\Http\Controllers\Pet\PetController;
+use App\Http\Controllers\Pet\PetStateController;
+use App\Http\Controllers\Pets\AnimalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +40,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+//me crea las rutas de todos los metodos que tenga el controlador sea post/get/delete/update
+Route::resource('/animals', AnimalController::class)->names('animals');
+Route::resource('/pets', PetController::class)->names('pets');
+Route::resource('/pet_states', PetStateController::class)->names('pet_states');
+Route::resource('/adoption', AdoptionController::class)->names('adoption');
+Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store'])->name('adoption.store');
+
+
+
 
 require __DIR__.'/auth.php';
