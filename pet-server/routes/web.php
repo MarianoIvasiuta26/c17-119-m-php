@@ -42,10 +42,12 @@ Route::middleware('auth')->group(function () {
 });
 
 //me crea las rutas de todos los metodos que tenga el controlador sea post/get/delete/update
-Route::resource('/animals', AnimalController::class);
-Route::resource('/pets', PetController::class);
-Route::resource('/pet_states', PetStateController::class);
-Route::resource('/adoption', AdoptionController::class);
+Route::resource('/animals', AnimalController::class)->names('animals');
+Route::resource('/pets', PetController::class)->names('pets');
+Route::resource('/pet_states', PetStateController::class)->names('pet_states');
+Route::resource('/adoption', AdoptionController::class)->names('adoption');
+Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store'])->name('adoption.store');
+
 
 
 

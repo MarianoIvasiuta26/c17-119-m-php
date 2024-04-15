@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Adoption;
 
 use App\Http\Controllers\Controller;
 use App\Models\Adoption;
+use App\Models\PublicationDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Inertia\Inertia;
+use Ramsey\Uuid\Type\Integer;
 
 class AdoptionController extends Controller
 {
@@ -25,9 +28,12 @@ class AdoptionController extends Controller
         return Inertia::render('Adoption/Create'); // Renderiza la vista de creación de adopción
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $publication_detail_id)
     {
-        $adoption = $this->createOrUpdateAdoption($request); // Crea una nueva adopción
+        //Buscamos la publicación corresondiente en la BD
+        $detalle = PublicationDetail::findOrFail($publication_detail_id);
+        
+        $adoption = $this->createOrUpdateAdoption($request, $detalle); // Crea una nueva adopción
         return redirect()->route('adoption.index')->with($this->getSuccessOrErrorMessage($adoption)); // Redirige y muestra mensaje
     }
 
@@ -41,7 +47,7 @@ class AdoptionController extends Controller
         return $this->renderAdoptionView($id, 'Adoption/Edit'); // Muestra el formulario de edición de una adopción
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $adoption = $this->createOrUpdateAdoption($request, $id); // Actualiza una adopción
         return redirect()->route('adoption.index')->with($this->getSuccessOrErrorMessage($adoption)); // Redirige y muestra mensaje
@@ -54,7 +60,7 @@ class AdoptionController extends Controller
         return redirect()->route('adoption.index')->with($this->getSuccessOrErrorMessage($result)); // Redirige y muestra mensaje
     }
 
-    private function createOrUpdateAdoption(Request $request, string $id = null)
+    private function createOrUpdateAdoption(Request $request, $id = null, $detalle = null)
     {
         $validateDataAdoption = $request->validate([ // Valida los datos del formulario
             'pet_id' => 'required|integer',
@@ -66,9 +72,21 @@ class AdoptionController extends Controller
 
         if ($id) { // Si se proporciona un ID, actualiza la adopción existente
             $adoption = Adoption::findOrFail($id);
-            return $adoption->update($validateDataAdoption);
+            $decision = $request->input('decision');
+            $adoption->state($decision);
+            $adoption->end_date = Date::now();
+            $adoption->save();
+            return $adoption;
         } else { // De lo contrario, crea una nueva adopción
-            return Adoption::create($validateDataAdoption);
+            //Obtenemos el id del usuario autenticado
+            $user = auth()->user()->id;
+            return Adoption::create([
+                'pet_id' => $detalle->pet_id,
+                'user_id' => $user->id,
+                'state' => 'En proceso',
+                'start_date' => Date::now(),
+                'end_date' => null,
+            ]);
         }
     }
 
