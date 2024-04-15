@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Adoption\AdoptionController;
 use App\Http\Controllers\Pet\PetController;
 use App\Http\Controllers\Pet\PetStateController;
 use App\Http\Controllers\Pets\AnimalController;
@@ -44,6 +45,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('/animals', AnimalController::class);
 Route::resource('/pets', PetController::class);
 Route::resource('/pet_states', PetStateController::class);
+Route::resource('/adoption', AdoptionController::class);
 
 
 
