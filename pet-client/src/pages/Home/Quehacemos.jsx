@@ -53,7 +53,7 @@ const Quehacemos = () => {
       {/* Grayscale filter */}
       <div className="absolute inset-0 bg-gray-300 opacity-70 "></div>
       {/* Content */}
-      <div className="max-w-full px-4 text-center text-gray-900 relative z-10">
+      <div className="max-w-5xl px-4 text-center text-gray-900 relative z-10">
         <h1 className="text-5xl md:text-3xl lg:text-5xl xl:text-5xl sm:text-3xl">
           ¿Qué Hacemos?
         </h1>
