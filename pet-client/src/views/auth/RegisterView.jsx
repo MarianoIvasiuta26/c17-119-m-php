@@ -1,8 +1,4 @@
-
-export default function RegisterView() {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const RegisterView = () => {
+  return <div></div>;
+};
+export default RegisterView;
