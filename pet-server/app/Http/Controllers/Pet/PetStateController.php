@@ -16,10 +16,13 @@ class PetStateController extends Controller
         //Obtenemos los estados de las mascotas registrados en el sistema
         $pet_states = PetState::all();
 
+        return $pet_states;
+        /*
         //Devolvemos la vista con todos los estados obtenidos
         return Inertia::render('Pet/PetState', [
             'pet_states' => $pet_states,
         ]);
+        */
     }
 
     /**
