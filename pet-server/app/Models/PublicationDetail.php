@@ -21,7 +21,7 @@ class PublicationDetail extends Model
     //Establecemos relación 1 a n con mascota
     public function pet()
     {
-        return $this->belongsTo(Pets::class);
+        return $this->belongsTo(Pet::class);
     }
 
     //Establecemos relación 1 a n con usuario

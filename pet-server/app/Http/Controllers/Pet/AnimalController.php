@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Pets;
+namespace App\Http\Controllers\Pet;
 
 use App\Http\Controllers\Controller;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class AnimalController extends Controller
 {
