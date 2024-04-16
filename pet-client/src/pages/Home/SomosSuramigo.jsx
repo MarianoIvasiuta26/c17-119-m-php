@@ -12,7 +12,7 @@ const SomosSuramigo = () => {
         }}
       >
    
-        <div className="max-w-5xl px-4 text-center text-green-600 ">
+        <div className="max-w-5xl px-4 text-center text-gray-900 ">
           <h1 className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl">
             Somos SurAmigo
           </h1>

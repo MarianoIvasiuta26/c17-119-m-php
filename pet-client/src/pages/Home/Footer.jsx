@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
             <div className="space-y-3">
               <h3 className="tracking-wide uppercase text-gray-50">
-                ¿Qué Hacemos?
+               <a href="/Quehacemos"></a> ¿Qué Hacemos?
               </h3>
             </div>
             <div className="space-y-3">
