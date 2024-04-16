@@ -12,15 +12,16 @@ use Ramsey\Uuid\Type\Integer;
 
 class AdoptionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth'); // Aplica el middleware de autenticación
-    }
+   // public function __construct()
+   // {
+   //     $this->middleware('auth'); // Aplica el middleware de autenticación
+   // }
 
     public function index()
     {
         $adoptions = Adoption::all(); // Recupera todas las adopciones
         return Inertia::render('Adoption/Index', ['adoptions' => $adoptions]); // Renderiza la vista con las adopciones
+        //return $adoptions;
     }
 
     public function create()

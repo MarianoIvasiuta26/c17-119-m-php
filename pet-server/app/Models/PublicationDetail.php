@@ -31,8 +31,8 @@ class PublicationDetail extends Model
     }
 
     //Establecemos relación 1 a 1 con publicación de adopción
-    public function adoptionPublication()
-    {
-        return $this->hasOne(AdoptionPublication::class);
-    }
+    //public function adoptionPublication()
+    //{
+    //    return $this->hasOne(AdoptionPublication::class);
+    //}
 }
