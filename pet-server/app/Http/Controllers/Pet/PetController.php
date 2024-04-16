@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Pet;
 use App\Http\Controllers\Controller;
 use App\Models\Pet;
 use Illuminate\Http\Request;
-use App\Models\Pet;
 use Inertia\Inertia;
 
 class PetController extends Controller{
