@@ -15,10 +15,13 @@ class PetController extends Controller{
         //Obtenemos las mascotas registrados en el sistema
         $pets = Pet::all();
 
+        return $pets;
+        /*
         //Devolvemos la vista con todos las mascotas obtenidas
         return Inertia::render('Pet/Pet', [  //primer arg es el nombre del componente y el segundo una matriz de datos para pasar al componente
             'pet' => $pets,
         ]);
+        */
     }
 
     //aca debe ir la  vista para crear una nueva mascota (src > views > ...)
