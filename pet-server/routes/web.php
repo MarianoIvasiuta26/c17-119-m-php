@@ -48,10 +48,10 @@ Route::resource('/pets', PetController::class)->names('pets');
 Route::resource('/pet_states', PetStateController::class)->names('pet_states');
 Route::resource('/adoption', AdoptionController::class)->names('adoption');
 Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store'])->name('adoption.store');
+
+// Rutas para PublicationDetailController
 Route::resource('/publicationDetail', PublicationDetailController::class)->names('publicationDetail');
 Route::post('/publicationDetail/{publication_detail_id}', [PublicationDetailController::class, 'store'])->name('publicationDetail.store');
-
-
 
 
 require __DIR__.'/auth.php';

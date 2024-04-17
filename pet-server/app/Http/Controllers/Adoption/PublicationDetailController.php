@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\PublicationDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use Ramsey\Uuid\Type\Integer;
 
 class PublicationDetailController extends Controller
 {
@@ -16,8 +18,8 @@ class PublicationDetailController extends Controller
     public function index()
     {
         $publication = PublicationDetail::all();
-        return Inertia::render('PublicationDetail/Index', ['publicationDetail' => $publication]);
-        //return $publication;
+        //return Inertia::render('PublicationDetail/Index', ['publicationDetail' => $publication]);
+        return $publication;
     }
 
     /**
@@ -32,19 +34,34 @@ class PublicationDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $publication_detail_id)
+    public function store(Request $request, $publication_detail_id = null)
     {
-        // Buscamos la Publicacion den la BD
-        $detail = PublicationDetail::classfindOrFail($publication_detail_id);
+        // Validamos los datos
+        $validateData = $request->validate([
+            'pet_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'publication_date' => 'required|date',
+            'description' => 'required|string|max:255',
+            'state' => 'required|in:Sin solicitud,En proceso,Aprobado,Rechazado',
+        ]);
 
-        $publication = $this->createOrUpdatePublication($request, $detail); // Crea una nueva publicacíon
-        return redirect()->route('publicationDetail.index')->with($this->getSuccessOrErrorMessage($publication)); // Redirige y muestra mensaje de exito o error
+        if ($publication_detail_id){
+            //Actualiza publicación existente
+            $publication = PublicationDetail::findOrFail($publication_detail_id);
+            $publication->update($validateData);
+        } else {
+            // Crea una nueva publicación
+            $publication = PublicationDetail::create($validateData);
+        }
+
+        return redirect()->route('publicationDetail.index')
+            ->with('succes', 'Publicación ' . ($publication_detail_id ? 'actualizada' : 'creada') . 'exitosamente');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         return $this->renderPublicationView($id, 'PublicationDetail/Edit'); // Muestra los detalles de una publicación
     }
@@ -52,7 +69,7 @@ class PublicationDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
         return $this->renderPublicationView($id, 'PublicationDetail/Edit'); // Muestra el formulario de edicion de Publicación
     }
@@ -60,16 +77,15 @@ class PublicationDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update()
     {
-        $publication = $this->createOrUpdateAdoption($request, $id); // actualiza una adopción
-        return redirect()->route('publicationDetail.index')->with(($this->getSuccessOrErrorMessage($publication))); // Redirige y muestra el mensaje
+        //return store($request, $id); // reutilizamos la funcion store para actualizar los datos
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id,)
+    public function destroy(int $id)
     {
         // Buscamos la Publicacion den la BD
         $publication = PublicationDetail::classfindOrFail($id);
@@ -79,7 +95,7 @@ class PublicationDetailController extends Controller
 
     private function createOrUpdateAdoption(Request $request, $id = null, $detail = null)
     {
-        $validatePublicationDetail = $request ->validate([ // valida los datos del formulario
+        $validatePublicationDetail = $request->validate([ // valida los datos del formulario
             'pet_id' => 'required|integer',
             'user_id' => 'required|integer',
             'publication_date' => 'required|date',
@@ -104,13 +120,13 @@ class PublicationDetailController extends Controller
                 'pet_id' => $detail->pet_id,
                 'user_id' => $user->id,
                 'description' => $detail->description,
-                'state' => 'Sin solicitud',
+                'state' => 'Sin Solicitud',
             ]);
 
         }
     }
 
-    private function renderPublicationView(string $id, string $view)
+    private function renderPublicationView(int $id, string $view)
     {
         $publication = PublicationDetail::findOrFail($id); // Buscamos la publicación de ID
         return Inertia::render($view, ['publicationDetail' => $publication]);// Renderiza la vista de Publicación
