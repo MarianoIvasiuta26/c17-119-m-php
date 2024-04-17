@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Pets;
+namespace App\Http\Controllers\Pet;
 
 use App\Http\Controllers\Controller;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class AnimalController extends Controller
 {
@@ -15,23 +16,21 @@ class AnimalController extends Controller
     {
         //Obtenemos los animales registrados en el sistema
         $animals = Animal::all();
-        return view('pets.animals.index', compact('animals')); //Ver como retornar a las vistas del proyecto React
+
+        //Devolvemos la vista con todos los animales obtenidos
+        return Inertia::render('Pet/Animal', [
+            'animals' => $animals,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
+    //no hace nada ya que no existe vista para crear animales, esos datos ya vendrian cargados en la bd
+    public function create(){
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //Guardamos el registro
+    //Guardamos el registro
+    public function store(Request $request){
+
         //Primero validamos los datos ingresados por el usuario
         $request->validate([
             'type_animal' => ['required', 'string']
@@ -55,12 +54,8 @@ class AnimalController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function show(string $id){
+
     }
 
     /**
@@ -113,12 +108,8 @@ class AnimalController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(int $id)
-    {
-        //Eliminamos el registro
+    //Eliminamos el registro de un animal
+    public function destroy(int $id){
         //Para eso usamos EloquentORM para eliminar en la BD y no usamos la sentencia SQL DELETE
         $reg = Animal::destroy($id);
 

@@ -1,9 +1,10 @@
-import  { useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import ErrorMessage from '../../components/ErrorMessage';
+export default function LoginView() {
 
-const LoginView =()=> {
   const initialValues = {
     email: '',
     password: '',
