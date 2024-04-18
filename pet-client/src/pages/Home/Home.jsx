@@ -1,10 +1,10 @@
 import Footer from "./Footer"
 import Header from "./Header"
-
 import SomosSuramigo from "./SomosSuramigo"
 import Quehacemos from "./Quehacemos"
 import PetForm from "../Mascotas/PetForm"
-
+import Navbar from "./Navbar"
+import LoginPage from "../Login/LoginPage"
 
 
 
@@ -12,11 +12,12 @@ import PetForm from "../Mascotas/PetForm"
 const Home = () => {
   return (
     <div>
-      {/* <Navbar /> */}
+      <Navbar />
+      <LoginPage />
       <Header />
       <Quehacemos />
       <SomosSuramigo />
-      <PetForm />     
+      <PetForm />
       <Footer />
     </div>
   );
