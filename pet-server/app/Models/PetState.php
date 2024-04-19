@@ -18,6 +18,6 @@ class PetState extends Model
     //Establecemos relación uno a muchos con mascotas
     public function pets()
     {
-        return $this->hasMany(Pets::class);
+        return $this->hasMany(Pet::class);
     }
 }
