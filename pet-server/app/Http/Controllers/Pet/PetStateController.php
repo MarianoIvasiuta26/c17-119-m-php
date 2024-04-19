@@ -45,7 +45,7 @@ class PetStateController extends Controller
         */
 
         //si no existe, obtenemos todos los datos ingresados en los input del form
-        $pet_state = PetState::create($request->all());
+        $pet_states = PetState::create($request->all());
 
         /*if(!$pet_state){
             $data = [
