@@ -33,36 +33,32 @@ class PetStateController extends Controller
 
 
     public function store(Request $request){
+
         $request->validate([
             'state'  => 'required | string'
         ]);
-
         /*
         // Verificamos si el estado ya existe
         if (PetState::where('pet_state', $request->state)->exists()) {
             return redirect()->route('pet_state.index')->with('error', 'El estado ya existe');
         }
         */
-
         //si no existe, obtenemos todos los datos ingresados en los input del form
         $pet_states = PetState::create($request->all());
 
-        /*if(!$pet_state){
+        if(!$pet_states){
             $data = [
                 'message'  => 'Error al crear el estado',
                 'status'    => 500
             ];
-            return response()->json($data, 500);
         }else{
             $data = [
-                'pet_state'    => $pet_state,
+                'pet_state'    => $pet_states,
                 'status'    => 201
             ];
+
         }
-        */
-
-        return('Se guardo');
-
+        return response()->json($data, 500);
         /*
         //validamos si el estado fue creado redireccionando la vista
         if ($pet_state) {
@@ -71,16 +67,6 @@ class PetStateController extends Controller
             return redirect()->route('pet_state.index')->with('error', 'Ocurrió un error al crear el registro');
         }
         */
-
-        //para testear
-        if($request->fails()){
-            $data = [
-                'message'        => 'Error en la validacion de los datos',
-                'errors'         => $request->getValidatorErrors(),
-                'status'          => 400
-            ];
-            return response()->json($data, 400);
-        }
     }
 
 
@@ -92,7 +78,7 @@ class PetStateController extends Controller
 
     public function edit(int $id){
         //Obtenemos el registro a editar
-        $pet_state = PetState::find($id);
+        $pet_states = PetState::find($id);
 
         //debemos mostrarle la vista para editar el estado determinado
         return Inertia::render('');
@@ -104,11 +90,11 @@ class PetStateController extends Controller
             'state'  => 'required | string '
         ]);
 
-        $pet_state = PetState::find($id);
-        $pet_state->update( $request->all()); //la actualizamos
+        $pet_states = PetState::find($id);
+        $pet_states->update( $request->all()); //la actualizamos
 
         //validamos si el estado fue actualizado y redirigimos
-        if ($pet_state) {
+        if ($pet_states) {
             return redirect()->route('pet_state.index')->with('success', 'Registro creado correctamente');
         } else {
             return redirect()->route('pet_state.index')->with('error', 'Ocurrió un error al crear el registro');
@@ -118,10 +104,10 @@ class PetStateController extends Controller
 
     public function destroy(int $id){
         //Usamos EloquentORM para eliminar en la BD y no usamos la sentencia SQL DELETE
-        $pet_state = PetState::destroy($id);
+        $pet_states = PetState::destroy($id);
 
         //Validamos si se eliminó correctamente el estado de la mascota
-        if($pet_state){
+        if($pet_states){
             return redirect()->route('pet_state.index')->with('success', 'Registro eliminado correctamente');
         }else{
             return redirect()->route('pet_state.index')->with('error', 'Ocurrió un error al eliminar el registro');
