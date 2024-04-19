@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Adoption\AdoptionController;
+use App\Http\Controllers\Adoption\PublicationDetailController;
 use App\Http\Controllers\Pet\PetController;
 use App\Http\Controllers\Pet\PetStateController;
 use App\Http\Controllers\Pet\AnimalController;
@@ -49,7 +50,9 @@ Route::resource('/pet_state', PetStateController::class)->names('pet_state');
 Route::resource('/adoption', AdoptionController::class)->names('adoption');
 Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store'])->name('adoption.store');
 
-
+// Rutas para PublicationDetailController
+Route::resource('/publicationDetail', PublicationDetailController::class)->names('publicationDetail');
+Route::post('/publicationDetail/{publication_detail_id}', [PublicationDetailController::class, 'store'])->name('publicationDetail.store');
 
 
 require __DIR__.'/auth.php';

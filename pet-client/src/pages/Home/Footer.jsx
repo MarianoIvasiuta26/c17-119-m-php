@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <>
-      <footer className="px-2 divide-y bg-green-900 text-gray-100">
+      <footer className="relative px-2 divide-y bg-green-900 text-gray-100">
         <div className="container flex flex-col justify-between py-3 mx-auto space-y-3">
           <div className="lg:w-1/3 mx-auto">
             <a
@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
             <div className="space-y-3">
               <h3 className="tracking-wide uppercase text-gray-50">
-                ¿Qué Hacemos?
+               <a href="/Quehacemos"></a> ¿Qué Hacemos?
               </h3>
             </div>
             <div className="space-y-3">
