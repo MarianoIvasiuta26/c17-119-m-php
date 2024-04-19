@@ -29,7 +29,7 @@ class PetController extends Controller{
         return Inertia::render('');
     }
 
-    //para guardar la mascota creada
+    //para guardar la mascota creada y validar los datos que vienen del front
     public function store(Request $request){
         $request->validate([
             'name'  => 'required | string ',
