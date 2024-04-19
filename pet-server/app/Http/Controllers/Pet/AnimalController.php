@@ -18,9 +18,11 @@ class AnimalController extends Controller
         $animals = Animal::all();
 
         //Devolvemos la vista con todos los animales obtenidos
-        return Inertia::render('Pet/Animal', [
+        return $animals;
+        /*return Inertia::render('Pet/Animal', [
             'animals' => $animals,
         ]);
+        */
     }
 
     //no hace nada ya que no existe vista para crear animales, esos datos ya vendrian cargados en la bd

@@ -24,7 +24,7 @@ class Pet extends Model
         'image'
     ];
 
-    public function userId() 
+    public function userId()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -50,5 +50,5 @@ class Pet extends Model
     {
         return $this->hasMany(PublicationDetail::class);
     }
-    
+
 }
