@@ -47,7 +47,7 @@ class PetStateController extends Controller
         //si no existe, obtenemos todos los datos ingresados en los input del form
         $pet_state = PetState::create($request->all());
 
-        if(!$pet_state){
+        /*if(!$pet_state){
             $data = [
                 'message'  => 'Error al crear el estado',
                 'status'    => 500
@@ -59,6 +59,9 @@ class PetStateController extends Controller
                 'status'    => 201
             ];
         }
+        */
+
+        return('Se guardo');
 
         /*
         //validamos si el estado fue creado redireccionando la vista
