@@ -23,8 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//me crea las rutas de todos los metodos que tenga el controlador sea post/get/delete/update
+//resource me crea las rutas de todos los metodos que tenga el controlador sea post/get/delete/update
 Route::resource('/animals', AnimalController::class)->names('animal');
+
 Route::resource('/pets', PetController::class)->names('pets');
 Route::resource('/pet_states', PetStateController::class)->names('pet_states');
 
