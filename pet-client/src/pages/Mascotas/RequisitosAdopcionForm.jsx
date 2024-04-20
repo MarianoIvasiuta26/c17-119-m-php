@@ -43,8 +43,8 @@ const handleInputChange = (e) => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto md:px-6 p-2 text-left">
-      <form className="w-full max-w-7xl mx-auto md:px-6 p-2 bg-white bg-opacity-20">
+    <div className="max-w-5xl mx-auto md:px-6 p-2 text-left col-span-3">
+      <form className="w-full max-w-7xl mx-auto md:px-6 p-2 ">
         <h1 className="top-20 mt-10 pt-16 text-left text-4xl font-normal font-bebas-neue text-green-800 md:text-2xl lg:text-3xl sm:text-xl p-4">
           Datos Personales
         </h1>
@@ -52,13 +52,13 @@ const handleInputChange = (e) => {
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2"
-              htmlFor="grid-fullname"
+              htmlFor="fullname"
             >
               Nombre Completo
             </label>
             <input
               className="appearance-none block w-full bg-gray-100 text-green-800  border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-              id="grid-first-name"
+              id="fullname"
               type="text"
               name="fullName"
               value={formData.fullName}
@@ -72,7 +72,7 @@ const handleInputChange = (e) => {
           <div className="w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-green-800 text-xs font-bold mb-2"
-              htmlFor="grid-phone"
+              htmlFor="phone"
             >
               Teléfono
             </label>
@@ -84,12 +84,13 @@ const handleInputChange = (e) => {
               value={formData.phone}
               onChange={handleInputChange}
               placeholder="654321"
+              autoComplete="on"
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2"
-              htmlFor="DNI"
+              htmlFor="dni"
             >
               DNI
             </label>
@@ -119,12 +120,13 @@ const handleInputChange = (e) => {
               placeholder="mimail@correo.com"
               value={formData.email}
               onChange={handleInputChange}
+              autoComplete="on"
             />
           </div>
           <div className="w-full md:w-1/2 px-3">
             <label
               className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2"
-              htmlFor="fulldirection"
+              htmlFor="address"
             >
               Dirección completa
             </label>
@@ -136,6 +138,7 @@ const handleInputChange = (e) => {
               placeholder="Dirección completa"
               value={formData.address}
               onChange={handleInputChange}
+              autoComplete="on"
             />
           </div>
         </div>
@@ -144,7 +147,7 @@ const handleInputChange = (e) => {
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2"
-              htmlFor="grid-city"
+              htmlFor="city"
             >
               Ciudad
             </label>
@@ -161,7 +164,7 @@ const handleInputChange = (e) => {
           <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2"
-              htmlFor="grid-state"
+              htmlFor="province"
             >
               Provincia
             </label>
@@ -194,161 +197,188 @@ const handleInputChange = (e) => {
           </div>
         </div>
       </form>
-      <form className="max-w-7xl mx-auto md:px-6 p-2 bg-white bg-opacity-70">
+      <form className="w-full max-w-7xl mx-auto md:px-6 p-2 ">
         <h1 className="relative top-5 text-left text-4xl font-normal font-bebas-neue text-green-800 md:text-2xl lg:text-4xl sm:text-xl p-2 ">
           Requisitos Adopción
         </h1>
-        <div className="pt-4 flex flex-wrap -mx-3 mb-2">
-          <div className="max-w-lg md:w-1/3 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2  p-2 rounded-sm"
-              htmlFor="otherAnimals"
-            >
-              ¿Tienes otros animales en casa?
-            </label>
-            <div className="relative">
-              <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="otherAnimals"
-                name="otherAnimals"
-                value={formData.otherAnimals}
-                onChange={handleInputChange}
+
+        <div className="flex flex-col md:flex-row">
+          {/* Column 1 */}
+          <div className="flex-1 md:w-1/3 md:mr-2">
+            {/* Content for column 1 */}
+            <div>
+              <label
+                className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2  p-2 rounded-sm"
+                htmlFor="otherAnimals"
               >
-                <option>Si</option>
-                <option>No</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                ¿Tienes otros animales en casa?
+              </label>
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="otherAnimals"
+                  name="otherAnimals"
+                  value={formData.otherAnimals}
+                  onChange={handleInputChange}
                 >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                  <option>Si</option>
+                  <option>No</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-          <div className="max-w-lg md:w-1/3 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2  p-2 rounded-sm"
-              htmlFor="hasChildren"
-            >
-              ¿Tiene niñas/os en casa?
-            </label>
-            <div className="relative">
-              <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="hasChildren"
-                name="hasChildren"
-                value={formData.hasChildren}
-                onChange={handleInputChange}
+          {/* Column 2 */}
+          <div className="flex-1 md:w-1/3 md:mr-2">
+            {/* Content for column 2 */}
+            <div>
+              <label
+                className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2  p-2 rounded-sm"
+                htmlFor="hasChildren"
               >
-                <option>Si</option>
-                <option>No</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                ¿Tiene niñas/os en casa?
+              </label>
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="hasChildren"
+                  name="hasChildren"
+                  value={formData.hasChildren}
+                  onChange={handleInputChange}
                 >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                  <option>Si</option>
+                  <option>No</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-          <div className="max-w-lg md:w-1/3 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2  p-2 rounded-sm"
-              htmlFor="experienceWithPets"
-            >
-              ¿Tiene experiencia con mascotas?
-            </label>
-            <div className="relative">
-              <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="experienceWithPets"
-                name="experienceWithPets"
-                value={formData.experienceWithPets}
-                onChange={handleInputChange}
+          {/* Column 3 */}
+          <div className="flex-1 md:w-1/3">
+            {/* Content for column 3 */}
+
+            <div>
+              <label
+                className="block uppercase tracking-wide text-green-800  text-xs font-bold mb-2  p-2 rounded-sm"
+                htmlFor="experienceWithPets"
               >
-                <option>Si</option>
-                <option>No</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                ¿Tiene experiencia con mascotas?
+              </label>
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="experienceWithPets"
+                  name="experienceWithPets"
+                  value={formData.experienceWithPets}
+                  onChange={handleInputChange}
                 >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                  <option>Si</option>
+                  <option>No</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-          <div className=" m-2 max-w-5lg md:w-1/3 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-green-800 text-xs font-bold mb-2  p-2 rounded-sm"
-              htmlFor="canProvideSpace"
-            >
-              ¿Puede brindar un espacio adecuado para la mascota?
-            </label>
-            <div className="relative">
-              <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="canProvideSpace"
-                name="canProvideSpace"
-                value={formData.canProvideSpace}
-                onChange={handleInputChange}
+        </div>
+
+        {/* Second Row */}
+        <div className="flex flex-col md:flex-row mt-4">
+          {/* Column 1 */}
+          <div className="flex-1 md:w-1/2 md:mr-2">
+            {/* Content for column 1 of the second row */}
+            <div>
+              <label
+                className="block uppercase tracking-wide text-green-800 text-xs font-bold mb-2  p-2 rounded-sm"
+                htmlFor="canProvideSpace"
               >
-                <option>Si</option>
-                <option>No</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                ¿Tiene un espacio adecuado para la mascota?
+              </label>
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="canProvideSpace"
+                  name="canProvideSpace"
+                  value={formData.canProvideSpace}
+                  onChange={handleInputChange}
                 >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                  <option>Si</option>
+                  <option>No</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
-          <div className="m-2 max-w-lg md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="max-w-full block uppercase tracking-wide text-green-800  text-xs font-bold mb-2 p-2 rounded-sm"
-              htmlFor="canProvideCareAndVetAttention"
-            >
-              ¿Puede brindar los cuidados básicos y atención veterinaria?
-            </label>
-            <div className="relative">
-              <select
-                className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="canProvideCareAndVetAttention"
-                name="canProvideCareAndVetAttention"
-                value={formData.canProvideCareAndVetAttention}
-                onChange={handleInputChange}
+          {/* Column 2 */}
+          <div className="flex-1 md:w-1/2">
+            {/* Content for column 2 of the second row */}
+            <div>
+              <label
+                className="max-w-full block uppercase tracking-wide text-green-800  text-xs font-bold mb-2 p-2 rounded-sm"
+                htmlFor="canProvideCareAndVetAttention"
               >
-                <option>Si</option>
-                <option>No</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
+                ¿Puede brindar cuidados básicos/atención veterinaria?
+              </label>
+              <div className="relative">
+                <select
+                  className="block appearance-none w-full bg-gray-200 border border-gray-200 text-green-800  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="canProvideCareAndVetAttention"
+                  name="canProvideCareAndVetAttention"
+                  value={formData.canProvideCareAndVetAttention}
+                  onChange={handleInputChange}
                 >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
+                  <option>Si</option>
+                  <option>No</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-lime-700">
+                  <svg
+                    className="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </form>
+
       <div className="flex flex-col items-center justify-center gap-5 mt-6 md:flex-row">
         <button
-          className="inline-block w-auto text-center min-w-[100px] px-10 py-3 text-white transition-all rounded-md shadow-lg sm:w-auto bg-gradient-to-r from-green-600 to-green-500 hover:bg-gradient-to-b dark:shadow-green-900 shadow-green-200 hover:shadow-lg hover:shadow-green-400 hover:-tranneutral-y-px"
+          className="inline-block w-auto text-center min-w-[100px] px-10 py-3 m-5 text-white transition-all rounded-md shadow-lg sm:w-auto bg-gradient-to-r from-green-600 to-green-500 hover:bg-gradient-to-b dark:shadow-green-900 shadow-green-200 hover:shadow-lg hover:shadow-green-400 hover:-tranneutral-y-px"
           onClick={() => {
             localStorage.setItem("formData", JSON.stringify(formData));
           }}
