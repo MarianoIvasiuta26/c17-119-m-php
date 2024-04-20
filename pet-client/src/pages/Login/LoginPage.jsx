@@ -11,8 +11,7 @@ const LoginPage = () => {
     try {      
       const response = await axios.post("/login", { username, password });     
       console.log("Login successful:", response.data);
-    } catch (error) {
-      
+    } catch (error) {      
       console.error("Login failed:", error);
     }
   };

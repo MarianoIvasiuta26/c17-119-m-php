@@ -4,22 +4,25 @@ import SomosSuramigo from "./SomosSuramigo"
 import Quehacemos from "./Quehacemos"
 import PetForm from "../Mascotas/PetForm"
 import Navbar from "./Navbar"
-import LoginPage from "../Login/LoginPage"
+
 
 
 
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Navbar />
-      <LoginPage />
       <Header />
-      <Quehacemos />
+      <section id="Quehacemos">
+        <Quehacemos />
+      </section>
+      <section id="SomosSuramigo">     
       <SomosSuramigo />
+      </section>
       <PetForm />
       <Footer />
-    </div>
+    </>
   );
 }
 
