@@ -26,11 +26,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/animals', AnimalController::class)->names('animal');
 
 Route::resource('/pets', PetController::class)->names('pets');
-
+Route::post('/pets', [PetController::class, 'store']);
+Route::get('/pets/{id}', [PetController::class, 'show']);
+Route::delete('/pets/{id}', [PetController::class, 'destroy']);
+Route::put('/pets/{id}', [PetController::class, 'update']);
+Route::patch('/pets/{id}', [PetController::class, 'updatePartial']);
 
 // Rutas para AdoptionController
 Route::resource('/adoption', AdoptionController::class)->names('adoption');
 Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store'])->name('adoption.store');
+
 
 // Rutas para PublicationDetailController
 Route::get('/publicationDetail', [PublicationDetailController::class, 'index']); // Muestra todas las publicaciones
