@@ -79,7 +79,17 @@ class PublicationDetailController extends Controller
             return response()->json($data, 500);
         }
 
-        // Creamo el registro en la tabla
+        //verificamos que la mascota a publicar pertenezca al usuaio actual
+        $isPetOfUser = DB::table('pets')->where('id', $request->pet_id)->where('user_id', $request->user_id)->exists();
+        if (!$isPetOfUser){
+            $data = [
+                'message' => 'La mascota no esta reguistrada a nombre del susario ' . $request->user_id, // Mostramos un mensaje de error
+                'startus' => 500
+            ];
+            return response()->json($data, 500);
+        }
+
+        // Una vez haya pasado las validaciones y verificaciones Creamo el registro en la tabla
         $publication = PublicationDetail::create([
             'pet_id' => $request->pet_id,
             'user_id' => $request->user_id,
@@ -149,9 +159,9 @@ class PublicationDetailController extends Controller
 
 
      // buscamos las publicaciones de un tipo de mascota segun su pet_id y que sea solo del mismo usuario
-    public function showpetId ($petId, $userId)
+    public function showpetId ($userId, $petId)
     {
-        $publications = PublicationDetail::where('pet_id', $petId)->where('user_id', $userId)->get();
+        $publications = DB::table('pets')->where('user_id', $userId)->where('animal_id')->get();
 
         if ($publications->isEmpty()){
             $data = [
