@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Adoption;
 
 use App\Http\Controllers\Controller;
 use App\Models\Adoption;
+use App\Models\Pet;
+use App\Models\PetState;
 use App\Models\PublicationDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
-use Inertia\Inertia;
-use Ramsey\Uuid\Type\Integer;
 
 class AdoptionController extends Controller
 {
@@ -20,47 +21,83 @@ class AdoptionController extends Controller
     public function index()
     {
         $adoptions = Adoption::all(); // Recupera todas las adopciones
-        return Inertia::render('Adoption/Index', ['adoptions' => $adoptions]); // Renderiza la vista con las adopciones
-        //return $adoptions;
+        $pets = Pet::all(); // Recupera todas las mascotas
+        $users  = User::all(); // Recupera todos los usuarios
+        return response()->json(['adoptions' => $adoptions, 'pets' => $pets, 'users' => $users]); // Retorna un JSON con las adopciones, mascotas y usuarios
     }
 
     public function create()
     {
-        return Inertia::render('Adoption/Create'); // Renderiza la vista de creación de adopción
+        //En esta función llamamos el formulario para comenzar el proceso de adopción
+        //¿O la llamamos desde la vista nomás?
     }
+
+    /* MÉTODO PARA CUANDO ESTÉ IMPLEMENTADA TODO 
 
     public function store(Request $request, $publication_detail_id)
     {
         //Buscamos la publicación corresondiente en la BD
         $detalle = PublicationDetail::findOrFail($publication_detail_id);
+
+        if(!$detalle){
+            return response()->json(['error' => 'Publicación no encontrada'], 404);
+        }
         
         $adoption = $this->createOrUpdateAdoption($request, $detalle); // Crea una nueva adopción
-        return redirect()->route('adoption.index')->with($this->getSuccessOrErrorMessage($adoption)); // Redirige y muestra mensaje
+
+        return response()->json($this->getSuccessOrErrorMessage($adoption)); // Redirige y muestra mensaje
+    }
+    */
+
+    public function store(Request $request)
+    {
+        $adoption = $this->createOrUpdateAdoption($request); // Crea una nueva adopción
+
+        return response()->json($this->getSuccessOrErrorMessage($adoption)); // Redirige y muestra mensaje
     }
 
     public function show(string $id)
     {
-        return $this->renderAdoptionView($id, 'Adoption/Edit'); // Muestra los detalles de una adopción
+        //Función para consultar el estado y la info del proceso de adopción
+        $myAdoption = Adoption::findOrFail($id); // Encuentra la adopción por ID
+
+        if(!$myAdoption){
+            return response()->json(['error' => 'No se encontró la adopción'], 404);
+        }
+
+        //Obtenemos el id del usuario que solicitó la adopción
+        $user = User::findOrFail($myAdoption->user_id); // Encuentra el usuario por ID
+
+        //Obtenemos la mascota correspondiente
+        $pet = Pet::findOrFail($myAdoption->pet_id); // Encuentra la mascota por ID
+
+        return response()->json(['adoption' => $myAdoption, 'user' => $user, 'pet' => $pet]); // Retorna un JSON con la adopción
     }
 
     public function edit(string $id)
     {
-        return $this->renderAdoptionView($id, 'Adoption/Edit'); // Muestra el formulario de edición de una adopción
+        //Función para editar el estado del proceso de adopción
+        //Lo usaría el refugio para actualizar el estado
+
+        $adoption = Adoption::findOrFail($id); // Encuentra la adopción por ID
+        return response()->json($adoption); // Retorna un JSON con la adopción
     }
 
     public function update(Request $request, $id)
     {
         $adoption = $this->createOrUpdateAdoption($request, $id); // Actualiza una adopción
-        return redirect()->route('adoption.index')->with($this->getSuccessOrErrorMessage($adoption)); // Redirige y muestra mensaje
+        return response()->json($this->getSuccessOrErrorMessage($adoption)); // Redirige y muestra mensaje
     }
 
     public function destroy(string $id)
     {
+        //Eliminamos con softdeletes
         $adoption = Adoption::findOrFail($id); // Encuentra la adopción por ID
         $result = $adoption->delete(); // Elimina la adopción
-        return redirect()->route('adoption.index')->with($this->getSuccessOrErrorMessage($result)); // Redirige y muestra mensaje
+        return response()->json($this->getSuccessOrErrorMessage($result)); // Redirige y muestra mensaje
     }
 
+    /*
     private function createOrUpdateAdoption(Request $request, $id = null, $detalle = null)
     {
         $validateDataAdoption = $request->validate([ // Valida los datos del formulario
@@ -77,24 +114,84 @@ class AdoptionController extends Controller
             $adoption->state($decision);
             $adoption->end_date = Date::now();
             $adoption->save();
+
+            //Si la decisión fué aceptada, se actualiza el estado de la mascota correspondiente
+            if($decision == 'Aceptada'){
+                $pet = Pet::findOrFail($adoption->pet_id);
+                $state = PetState::where('state', 'Adoptado')->first();
+                $pet->state = $state->id;
+                $pet->save();
+            }
+
             return $adoption;
-        } else { // De lo contrario, crea una nueva adopción
+        } else { 
+            // De lo contrario, crea una nueva adopción
             //Obtenemos el id del usuario autenticado
-            $user = auth()->user()->id;
+            //$user = auth()->user()->id; --> DESCOMENTAR CUANDO SE IMPLEMENTE CON LA VISTA Y ANDE EL LOGIN
+            $user = User::findOrFail($request->user_id); //BORRAR CUANDO SE IMPLEMENTE EL DE ARRIBA
+            $pet = Pet::findOrFail($detalle->pet_id);
+
+            if(!$user){
+                return response()->json(['error' => 'Usuario no encontrado'], 404);
+            }
+
             return Adoption::create([
-                'pet_id' => $detalle->pet_id,
-                'user_id' => $user->id,
+                'pet_id' => $pet->id,
+                'user_id' => $user->id, 
                 'state' => 'En proceso',
                 'start_date' => Date::now(),
                 'end_date' => null,
             ]);
         }
     }
+    */
 
-    private function renderAdoptionView(string $id, string $view)
+    private function createOrUpdateAdoption(Request $request, $id = null)
     {
-        $adoption = Adoption::findOrFail($id); // Encuentra la adopción por ID
-        return Inertia::render($view, ['adoption' => $adoption]); // Renderiza la vista con la adopción
+        $validateDataAdoption = $request->validate([ // Valida los datos del formulario
+            'pet_id' => 'integer',
+            'user_id' => 'integer',
+        ]);
+
+        if ($id) { // Si se proporciona un ID, actualiza la adopción existente
+            $adoption = Adoption::findOrFail($id);
+            $adoption->state = $request->state;
+            $adoption->end_date = Date::now();
+            $adoption->save();
+
+            //Si la decisión fué aceptada, se actualiza el estado de la mascota correspondiente
+            if($request->state == 'Aceptada'){
+                $pet = Pet::findOrFail($adoption->pet_id);
+                $state = PetState::where('state', 'Adoptado')->first();
+                $pet->state = $state->id;
+                $pet->save();
+            }
+
+            return $adoption;
+        } else { 
+            // De lo contrario, crea una nueva adopción
+            //Obtenemos el id del usuario autenticado
+            $user = User::findOrFail($request->user_id);
+            $pet = Pet::findOrFail($request->pet_id);
+
+            if(!$user){
+                return response()->json(['error' => 'Usuario no encontrado'], 404);
+            }
+
+            $AdoptionExist = Adoption::where('pet_id', $pet->id)->where('user_id', $user->id)->first();
+
+            if($AdoptionExist){
+                return response()->json(['error' => 'Ya existe una solicitud de adopción para esta mascota'], 404);
+            }
+            
+            return Adoption::create([
+                'pet_id' => $pet->id,
+                'user_id' => $user->id, 
+                'state' => 'En proceso',
+                'start_date' => Date::now(),
+                'end_date' => Date::now(),
+            ]);
+        }
     }
 
     private function getSuccessOrErrorMessage($result)

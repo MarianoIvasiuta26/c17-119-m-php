@@ -34,7 +34,7 @@ Route::patch('/pets/{id}', [PetController::class, 'updatePartial']);
 
 // Rutas para AdoptionController
 Route::resource('/adoption', AdoptionController::class)->names('adoption');
-Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store'])->name('adoption.store');
+//Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store']);
 
 
 // Rutas para PublicationDetailController
