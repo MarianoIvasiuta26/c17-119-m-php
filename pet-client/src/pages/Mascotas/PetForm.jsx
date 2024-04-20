@@ -8,13 +8,13 @@ const PetForm = () => {
         FORMULARIO ADOPTANTE
       </h1>
       <div
-        className="min-h-screen flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage: "url('perronegro.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",          
-        }}
+        // className="min-h-screen flex items-center justify-center bg-cover bg-center"
+        // style={{
+        //   backgroundImage: "url('perronegro.jpg')",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundRepeat: "no-repeat",          
+        // }}
       >
         <div >
           <RequisitosAdopcionForm />

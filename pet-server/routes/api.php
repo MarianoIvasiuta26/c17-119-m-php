@@ -35,8 +35,11 @@ Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'st
 Route::get('/publicationDetail', [PublicationDetailController::class, 'index']); // Muestra todas las publicaciones
 Route::get('/publicationDetail/{id}', [PublicationDetailController::class, 'show']); // Busca una publicación en particular
 Route::get('/publicationDetail/user/{user_id}', [PublicationDetailController::class, 'showUserId']); // Busca y muestra todas las publicaciones de un determinado usuario
-Route::get('/publicationDetail/pet/{pet_id}/user/{user_id}', [PublicationDetailController::class, 'showpetId']); // Busca y muestra todas las publicaciones de un determinado tipo de mascota
+//Route::get('/publicationDetail/user/{user_id}/pet/{pet_id}', [PublicationDetailController::class, 'showpetId']); // Busca y muestra todas las publicaciones de un determinado tipo de mascota
 Route::post('/publicationDetail', [PublicationDetailController::class, 'store']); // Guarda una nueva publicación siempre y cuando cumpla con algunas condiciones
 Route::put('/publicationDetail/{id}', [PublicationDetailController::class, 'update']); // Actualiza los campos 'description' y 'states'
 Route::patch('/publicationDetail/{id}', [PublicationDetailController::class, 'updatePartial']); // sin utilidad pora ahora pero se puede imprementar para actalizar algun campo en particular
 Route::delete('/publicationDetail/{id}', [PublicationDetailController::class, 'destroy']); // elimina la publicación
+
+
+// nota: buscar como filtrar por tipo de mascota
