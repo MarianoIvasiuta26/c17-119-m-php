@@ -8,30 +8,38 @@ use App\Models\Pet;
 use Inertia\Inertia;
 
 class PetController extends Controller{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(){
-        //Obtenemos las mascotas registrados en el sistema
-        $pets = Pet::all();
 
-        return $pets;
-        /*
-        //Devolvemos la vista con todos las mascotas obtenidas
-        return Inertia::render('Pet/Pet', [  //primer arg es el nombre del componente y el segundo una matriz de datos para pasar al componente
-            'pet' => $pets,
-        ]);
-        */
+     //Mostramos obteniendo las mascotas registrados en el sistema
+    public function index(){
+        $pet = Pet::all();
+
+        //validacion para  ver si hay mascotas
+        if($pet->isEmpty()){
+            $data = [
+                'message'  => "No se encontraron mascotas",
+                'status'    => 200
+            ];
+            return response()->json($data,404);
+        }else{
+            $data = [
+                'pets'       => $pet,
+                'status'       => 200
+            ];
+            return response()->json($data,200);
+        }
     }
 
     //aca debe ir la  vista para crear una nueva mascota (src > views > ...)
     public function create(){
-        return Inertia::render('');
+
     }
 
     //para guardar la mascota creada y validar los datos que vienen del front
     public function store(Request $request){
         $request->validate([
+            'user_id' => 'required | integer',
+            'pet_state_id'  => 'required | integer',
+            'animal_id'    => 'required | integer',
             'name'  => 'required | string ',
             'age'   => 'required| numeric',
             'color' => 'string',
@@ -41,27 +49,42 @@ class PetController extends Controller{
             'image' => 'string'
         ]);
 
-        //obtenemos todos los datos ingresados en los input del form
+        if($request->fails()){
+            $data=[
+                'message'  => 'Error en la validacion de datos',
+                'error'     => $request->getValidatorErrors(),
+                'status'    => 400
+            ];
+            return response()->json($data,400);
+        }
+        //obtenemos todos los datos ingresados en los input del form y creamos la mascota con todos los datos (all())
         $pet = Pet::create($request->all());
 
-        //validamos si la mascota fue creada
-        if ($pet) {
-            return redirect()->route('pets.index')->with('success', 'Registro creado correctamente');
-        } else {
-            return redirect()->route('pets.index')->with('error', 'Ocurrió un error al crear el registro');
+        if(!$pet){
+            $data = [
+                'message'  => 'No se pudo crear la mascota',
+                'status'    => 500
+            ];
+            return response()->json($data,500);
+        }else{
+            $data = [
+                'pet' => $pet,
+                'status' => 201
+            ];
+            return response()->json($data,201);
         }
     }
 
+    //para mostrar los detalles de una mascota especifica
     public function show(int $id){
+
     }
 
     //debemos mostrarle la vista para editar
     public function edit(int $id){
-
         //Obtenemos el registro a editar
         $pet = Pet::find($id);
 
-        return Inertia::render('');
     }
 
 
@@ -79,23 +102,11 @@ class PetController extends Controller{
         $pet = Pet::find($id); //buscamos la mascota
         $pet->update( $request->all()); //la actualizamos
 
-        //validamos si la mascota fue creada y redirigimos
-        if ($pet) {
-            return redirect()->route('pets.index')->with('success', 'Registro creado correctamente');
-        } else {
-            return redirect()->route('pets.index')->with('error', 'Ocurrió un error al crear el registro');
-        }
     }
 
     public function destroy(int $id){
         //Usamos EloquentORM para eliminar en la BD y no usamos la sentencia SQL DELETE
         $pet = Pet::destroy($id);
 
-        //Validamos si se eliminó correctamente la mascota
-        if($pet){
-            return redirect()->route('pets.index')->with('success', 'Registro eliminado correctamente');
-        }else{
-            return redirect()->route('pets.index')->with('error', 'Ocurrió un error al eliminar el registro');
-        }
     }
 }
