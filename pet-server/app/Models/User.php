@@ -41,7 +41,7 @@ class User extends Authenticatable
 
     //Establecemos relación 1 a n con mascotas
     public function pets(){
-        return $this->hasMany(Pets::class);
+        return $this->hasMany(Pet::class);
     }
 
     //Establecemos relación 1 a n con adopciones

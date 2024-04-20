@@ -1,18 +1,16 @@
-
 const SomosSuramigo = () => {
   return (
-    
-      <div
-        className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('gatonegro.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-   
-        <div className="max-w-5xl px-4 text-center text-gray-900 ">
+    <div
+      className="min-h-screen flex flex-col md:flex-row bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('gatonaranja.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <div className="flex-1 flex items-center justify-center">
+        <div className="max-w-7xl px-4 text-center font text-gray-950 bg-orange-200 opacity-70 rounded-md">
           <h1 className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl">
             Somos SurAmigo
           </h1>
@@ -42,7 +40,7 @@ const SomosSuramigo = () => {
           </a>
         </div>
       </div>
-    
+    </div>
   );
 };
 

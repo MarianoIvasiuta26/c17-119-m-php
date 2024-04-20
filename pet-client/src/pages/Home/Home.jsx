@@ -1,9 +1,9 @@
 import Footer from "./Footer"
 import Header from "./Header"
-
 import SomosSuramigo from "./SomosSuramigo"
 import Quehacemos from "./Quehacemos"
 import PetForm from "../Mascotas/PetForm"
+import Navbar from "./Navbar"
 
 
 
@@ -11,14 +11,18 @@ import PetForm from "../Mascotas/PetForm"
 
 const Home = () => {
   return (
-    <div>
-      {/* <Navbar /> */}
+    <>
+      <Navbar />
       <Header />
-      <Quehacemos />
+      <section id="Quehacemos">
+        <Quehacemos />
+      </section>
+      <section id="SomosSuramigo">     
       <SomosSuramigo />
-      <PetForm />     
+      </section>
+      <PetForm />
       <Footer />
-    </div>
+    </>
   );
 }
 
