@@ -83,7 +83,7 @@ class PublicationDetailController extends Controller
         $isPetOfUser = DB::table('pets')->where('id', $request->pet_id)->where('user_id', $request->user_id)->exists();
         if (!$isPetOfUser){
             $data = [
-                'message' => 'La mascota no esta registrada a nombre del susario ' . $request->user_id, // Mostramos un mensaje de error
+                'message' => 'La mascota no esta registrada a nombre del usuario ' . $request->user_id, // Mostramos un mensaje de error
                 'startus' => 500
             ];
             return response()->json($data, 500);
@@ -195,7 +195,7 @@ class PublicationDetailController extends Controller
         $publication->delete();
 
         $data = [
-            'message' => 'Publicaion eliminada exitosamente',
+            'message' => 'Publicación eliminada exitosamente',
             'status' => 200
         ];
 
