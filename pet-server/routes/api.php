@@ -4,7 +4,6 @@ use App\Http\Controllers\Adoption\AdoptionController;
 use App\Http\Controllers\Adoption\PublicationDetailController;
 use App\Http\Controllers\Pet\AnimalController;
 use App\Http\Controllers\Pet\PetController;
-use App\Http\Controllers\Pet\PetStateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,12 +25,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //me crea las rutas de todos los metodos que tenga el controlador sea post/get/delete/update
 Route::resource('/animals', AnimalController::class)->names('animal');
 Route::resource('/pets', PetController::class)->names('pets');
-Route::resource('/pet_states', PetStateController::class)->names('pet_states');
+
 
 // Rutas para AdoptionController
 Route::resource('/adoption', AdoptionController::class)->names('adoption');
 Route::post('/adoption/{publication_detail_id}', [AdoptionController::class, 'store'])->name('adoption.store');
 
 // Rutas para PublicationDetailController
-Route::resource('/publicationDetail', PublicationDetailController::class)->names('publicationDetail');
-Route::post('/publicationDetail/{publication_detail_id}', [PublicationDetailController::class, 'store'])->name('publicationDetail.store');
+Route::get('/publicationDetail', [PublicationDetailController::class, 'index']); // Muestra todas las publicaciones
+Route::get('/publicationDetail/{id}', [PublicationDetailController::class, 'show']); // Busca una publicación en particular
+Route::get('/publicationDetail/user/{user_id}', [PublicationDetailController::class, 'showUserId']); // Busca y muestra todas las publicaciones de un determinado usuario
+Route::get('/publicationDetail/pet/{pet_id}/user/{user_id}', [PublicationDetailController::class, 'showpetId']); // Busca y muestra todas las publicaciones de un determinado tipo de mascota
+Route::post('/publicationDetail', [PublicationDetailController::class, 'store']); // Guarda una nueva publicación siempre y cuando cumpla con algunas condiciones
+Route::put('/publicationDetail/{id}', [PublicationDetailController::class, 'update']); // Actualiza los campos 'description' y 'states'
+Route::patch('/publicationDetail/{id}', [PublicationDetailController::class, 'updatePartial']); // sin utilidad pora ahora pero se puede imprementar para actalizar algun campo en particular
+Route::delete('/publicationDetail/{id}', [PublicationDetailController::class, 'destroy']); // elimina la publicación
